@@ -1,0 +1,24 @@
+body{
+    background-image: url("../images/NflBackground.jpg");
+}
+h1{
+    text-align: center;
+}
+
+.container{
+    background: whitesmoke;
+    width: 960px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 100px;
+    opacity: .9;
+}
+
+#timeRemaining{
+    text-align: center;
+
+}
+
+#questions{
+    text-align: center;
+}

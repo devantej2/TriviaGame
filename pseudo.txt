@@ -1,0 +1,48 @@
+Trivia Game Pseudocode
+
+* You'll create a trivia game that shows only one question until the player answers it or their time runs out.
+
+* If the player selects the correct answer, show a screen congratulating them for choosing the right option. After a few seconds, display the next question -- do this without user input.
+
+* The scenario is similar for wrong answers and time-outs.
+
+  * If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
+  * If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
+
+* On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
+
+
+Declare variables
+
+correct
+incorrect
+unanswered
+score
+
+Create 1 object w/ key value pairs for questions
+    5 questions
+
+
+Click Event for starting the game
+    Display questions
+    Set interval for questions to be answered
+    Set Time out to display user ran out of time if answers haven't been submitted
+    unanswered is going to equal the number of questions due to submit not capturing values
+
+
+
+Click event for submission of choices
+    Capture value for each input 
+        compare value input with answer value in object 
+        -if = to each other
+            correct++
+        -if incorrect
+            incorrect++
+        -else
+            unanswered++
+
+When at end of all questions
+    -display correct, incorrect, unanswered
+    -display Start Over
+
+Start Over is the same as start
