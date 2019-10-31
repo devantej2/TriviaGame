@@ -22,32 +22,14 @@ $(document).ready(function () {
         console.log(triviaQuestions[i].answer);
     }
 
-    $("#startGame").on("click", timeLeft)
-    // {
-    // $(this).hide();
-    // $("#submit").html("<button id='done' class='btn'>Done</button>");
-    // countDown();
-    // timeRemaining();
+    $("#startGame").on("click", timeLeft);
 
-    // for (let i = 0; i < triviaQuestions.length; i++) {
-    //     const displayQuestion = $("<div class=question" + [i + 1] + ">");
-    //     displayQuestion.text(triviaQuestions[i].question);
-    //     const choicesArray = triviaQuestions[i].choices;
-    //     for (let j = 0; j < choicesArray.length; j++) {
-    //         const displayChoices = $("<div id=answer>");
-    //         displayChoices.html($("<input type='radio' name='answer' value=" + [j] + " >" + "<label>" + triviaQuestions[i].choices[j] + "</label>"));
-    //         displayQuestion.append(displayChoices);
-    //     }
-
-    //     $(".game").append(displayQuestion);
-    // }
 
     function timeLeft() {
         clearInterval(intervalID);
         intervalID = setInterval(countDown, 1000);
 
         $(this).hide();
-        $("#submit").html("<button id='done' class='btn'>Done</button>");
         countDown();
 
         for (let i = 0; i < triviaQuestions.length; i++) {
@@ -55,14 +37,25 @@ $(document).ready(function () {
             displayQuestion.text(triviaQuestions[i].question);
             const choicesArray = triviaQuestions[i].choices;
             for (let j = 0; j < choicesArray.length; j++) {
-                const displayChoices = $("<div id=answer>");
-                displayChoices.html($("<input type='radio' name='answer' value=" + [j] + " >" + "<label>" + triviaQuestions[i].choices[j] + "</label>"));
+                const displayChoices = $("<div id=answer " + i + ">");
+                displayChoices.html($("<input type='radio' name=answer" + [i] + " value=" + [j] + " >" + "<label>" + triviaQuestions[i].choices[j] + "</label>"));
                 displayQuestion.append(displayChoices);
             }
 
             $(".game").append(displayQuestion);
         }
 
+        $("#submit").html("<button id='finish' class='btn'>Submit Answers</button>");
+
+        $("#finish").on("click", function () {
+            stop();
+            $(".game").empty();
+            $("#submit").hide();
+            scoreCheck();
+
+            // Display 
+            displayResults();
+        });
     }
 
     function countDown() {
@@ -76,27 +69,106 @@ $(document).ready(function () {
             stop();
 
             alert("Time is Up!");
-
+            $(".game").empty();
+            $("#submit").hide();
+            scoreCheck();
             displayResults();
 
         }
 
     }
 
-    // function displayResults(){
+    function displayResults() {
+        $("#results").html("<h3>Here are your results!</h3>");
+        $("#correct").html("Correct Answers: " + correct);
+        $("#incorrect").html("Incorrect Answers: " + incorrect);
+        $("#unanswered").html("Unanswered: " + unanswered);
+
+    }
+
+    function scoreCheck() {
 
 
-    // }
+        let userAnswer1 = $("input[name='answer0']:checked").val();
+        let userAnswer2 = $("input[name='answer1']:checked").val();
+        let userAnswer3 = $("input[name='answer2']:checked").val();
+        let userAnswer4 = $("input[name='answer3']:checked").val();
+        let userAnswer5 = $("input[name='answer4']:checked").val();
 
-    // function scoreCalc(){
+        // Question 1
+        if (userAnswer1 === undefined) {
 
-    // }
+            unanswered++;
+        }
+        else if (userAnswer1 == triviaQuestions[0].answer) {
+
+            correct++;
+        }
+        else {
+
+            incorrect++;
+        }
+
+        // Question 2
+        if (userAnswer2 === undefined) {
+
+            unanswered++;
+        }
+        else if (userAnswer2 == triviaQuestions[1].answer) {
+
+            correct++;
+        }
+        else {
+
+            incorrect++;
+        }
+
+        // Question 3
+        if (userAnswer3 === undefined) {
+
+            unanswered++;
+        }
+        else if (userAnswer3 == triviaQuestions[2].answer) {
+
+            correct++;
+        }
+        else {
+
+            incorrect++;
+        }
+
+        // Question 4
+        if (userAnswer4 === undefined) {
+
+            unanswered++;
+        }
+        else if (userAnswer4 == triviaQuestions[3].answer) {
+
+            correct++;
+        }
+        else {
+
+            incorrect++;
+        }
+
+        // Question 5
+        if (userAnswer5 === undefined) {
+
+            unanswered++;
+        }
+        else if (userAnswer5 == triviaQuestions[4].answer) {
+
+            correct++;
+        }
+        else {
+
+            incorrect++;
+        }
+    }
 
     function stop() {
 
         clearInterval(intervalID);
     }
 });
-timeLeft();
-// });
 
